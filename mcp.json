@@ -1,0 +1,53 @@
+{
+  "name": "oxy-audit",
+  "version": "1.0.0",
+  "description": "OXY-Audit MCP Plugin - 四审计合一平台 (主机/日志/数据库/网络审计)",
+  "author": "OXY-Audit Team",
+  "homepage": "https://github.com/oxy-audit/mcp-plugin",
+  "repository": "https://github.com/oxy-audit/mcp-plugin",
+  "license": "MIT",
+  "keywords": ["mcp", "mcp-plugin", "security", "audit", "siem", "host-audit", "log-audit", "database-audit", "network-audit"],
+  "capabilities": {
+    "tools": {}
+  },
+  "environmentVariables": {
+    "OXY_API_URL": {
+      "type": "string",
+      "description": "OXY-Audit API 地址",
+      "default": "http://localhost:8000",
+      "required": false
+    },
+    "OXY_API_KEY": {
+      "type": "string",
+      "description": "API 认证密钥",
+      "required": true
+    },
+    "OXY_TIMEOUT": {
+      "type": "number",
+      "description": "请求超时时间(秒)",
+      "default": 30,
+      "required": false
+    }
+  },
+  "installation": {
+    "pip": "pip install oxy-audit-mcp",
+    "source": "git+https://github.com/oxy-audit/mcp-plugin.git"
+  },
+  "examples": [
+    {
+      "name": "查询所有主机",
+      "tool": "oxy_list_hosts",
+      "params": {"limit": 10}
+    },
+    {
+      "name": "查询安全日志",
+      "tool": "oxy_query_logs",
+      "params": {"query": "failed login", "log_type": "security", "limit": 50}
+    },
+    {
+      "name": "生成审计报告",
+      "tool": "oxy_generate_report",
+      "params": {"report_type": "summary", "time_range": "7d", "format": "json"}
+    }
+  ]
+}
